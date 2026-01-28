@@ -8,41 +8,56 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Check for Supabase auth token in cookies
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-  // Get the access token from cookies (Supabase stores it here)
-  const accessToken = request.cookies.get("sb-llwusclyblhvdnjzgerv-auth-token");
+  // Find any Supabase auth cookie
+  const allCookies = request.cookies.getAll();
+  const authCookie = allCookies.find((c) => c.name.includes("auth-token"));
 
-  if (!accessToken?.value) {
-    // No token — redirect to login
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
+  if (!authCookie?.value) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Verify the token by calling Supabase
   try {
+    // Try to extract the access token from the cookie value
+    let accessToken: string;
+    try {
+      // Supabase stores as base64-encoded JSON array: ["access_token", "refresh_token"]
+      const parsed = JSON.parse(
+        Buffer.from(authCookie.value, "base64").toString("utf-8")
+      );
+      accessToken = Array.isArray(parsed) ? parsed[0] : parsed;
+    } catch {
+      // Fallback: try parsing as plain JSON
+      try {
+        const parsed = JSON.parse(authCookie.value);
+        accessToken = Array.isArray(parsed) ? parsed[0] : parsed;
+      } catch {
+        // Last fallback: use raw value
+        accessToken = authCookie.value;
+      }
+    }
+
     const supabase = createClient(supabaseUrl, supabaseAnonKey, {
       global: {
         headers: {
-          Authorization: `Bearer ${JSON.parse(accessToken.value)[0]}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       },
     });
 
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    // Must be logged in AND be Ecko's admin account
     const ADMIN_EMAILS = ["es@publishingcollectives.com"];
 
     if (!user || !ADMIN_EMAILS.includes(user.email ?? "")) {
-      const loginUrl = new URL("/login", request.url);
-      return NextResponse.redirect(loginUrl);
+      return NextResponse.redirect(new URL("/login", request.url));
     }
   } catch {
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   return NextResponse.next();
