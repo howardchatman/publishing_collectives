@@ -161,9 +161,8 @@ export default function Contact() {
               <iframe
                 src={calendarUrl}
                 width="100%"
-                height="700"
                 frameBorder="0"
-                className="w-full"
+                className="w-full h-120 sm:h-175"
                 title="Book a time with Ecko"
               />
             </div>

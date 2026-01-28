@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -12,6 +13,8 @@ import {
   Settings,
   LogOut,
   ArrowLeft,
+  Menu,
+  X,
 } from "lucide-react";
 
 const navItems = [
@@ -30,6 +33,7 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -38,14 +42,38 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex bg-gray-50">
+      {/* Mobile header */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-dark text-white flex items-center justify-between px-4 py-3">
+        <h2 className="text-sm font-bold">Admin Dashboard</h2>
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-white p-1"
+          aria-label="Toggle sidebar"
+        >
+          {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile backdrop */}
+      {sidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/50"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-dark text-white flex flex-col fixed h-full">
+      <aside
+        className={`w-64 bg-dark text-white flex flex-col fixed h-full z-50 transition-transform duration-200 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0`}
+      >
         <div className="px-6 py-6 border-b border-white/10">
           <h2 className="text-lg font-bold">Publishing Collectives</h2>
           <p className="text-sm text-white/50 mt-0.5">Admin Dashboard</p>
         </div>
 
-        <nav className="flex-1 px-4 py-4 space-y-1">
+        <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href ||
@@ -54,6 +82,7 @@ export default function DashboardLayout({
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
                     ? "bg-primary text-dark"
@@ -86,7 +115,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 ml-64 p-8">{children}</main>
+      <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8">{children}</main>
     </div>
   );
 }

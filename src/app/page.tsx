@@ -23,7 +23,7 @@ export default function Home() {
 
           {/* Right - Text */}
           <div>
-            <h1 className="text-5xl md:text-6xl font-black leading-tight tracking-tight text-dark">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-tight tracking-tight text-dark">
               Where Voices Rise
               <br />
               and Stories Shine.
@@ -191,7 +191,7 @@ export default function Home() {
       {/* ===================== STAY CONNECTED ===================== */}
       <section className="bg-white">
         <div className="max-w-5xl mx-auto px-6 py-20 text-center">
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-primary uppercase leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-primary uppercase leading-tight tracking-tight">
             Stay Connected
             <br />
             To Stories That
@@ -252,30 +252,32 @@ export default function Home() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <div className="mt-12 flex flex-col sm:flex-row sm:flex-wrap justify-center gap-4">
             <a
-              href="#"
-              className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
+              href="https://www.instagram.com/publishingcollectives/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-dark text-dark font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-base sm:text-lg text-center"
             >
               Follow Publishing Collectives
             </a>
             <Link
               href="/contact"
-              className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
+              className="border-2 border-dark text-dark font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-base sm:text-lg text-center"
             >
               Connect with Ecko
             </Link>
             <Link
               href="/august-updates"
-              className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
+              className="border-2 border-dark text-dark font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-base sm:text-lg text-center"
             >
               See August&apos;s Updates
             </Link>
             <Link
               href="/contact"
-              className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
+              className="border-2 border-dark text-dark font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-base sm:text-lg text-center"
             >
-              Publish Your Book with Publishing Collectives
+              Publish Your Book with Us
             </Link>
           </div>
         </div>

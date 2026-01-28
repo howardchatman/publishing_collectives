@@ -66,23 +66,13 @@ export default function Navbar() {
           >
             Shop
           </Link>
-          {isLoggedIn ? (
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-semibold px-5 py-2 rounded-full transition-colors text-sm"
-            >
-              <User size={16} />
-              Dashboard
-            </Link>
-          ) : (
-            <Link
-              href="/login"
-              className="flex items-center gap-2 border-2 border-dark text-dark font-semibold px-5 py-2 rounded-full hover:bg-dark hover:text-white transition-colors text-sm"
-            >
-              <User size={16} />
-              Sign In
-            </Link>
-          )}
+          <Link
+            href={isLoggedIn ? "/dashboard" : "/login"}
+            className="flex items-center gap-2 border-2 border-dark text-dark font-semibold px-5 py-2 rounded-full hover:bg-dark hover:text-white transition-colors text-sm"
+          >
+            <User size={16} />
+            Sign In
+          </Link>
         </nav>
 
         {/* Mobile hamburger */}
@@ -102,11 +92,7 @@ export default function Navbar() {
           <Link href="/about" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>About</Link>
           <Link href="/contact" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           <Link href="/shop" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
-          {isLoggedIn ? (
-            <Link href="/dashboard" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
-          ) : (
-            <Link href="/login" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
-          )}
+          <Link href={isLoggedIn ? "/dashboard" : "/login"} className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
         </nav>
       )}
     </header>

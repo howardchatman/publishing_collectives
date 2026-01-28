@@ -69,7 +69,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <a href="https://www.instagram.com/publishingcollectives/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   Follow Publishing Collectives
                 </a>
               </li>
