@@ -2,11 +2,23 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { ShoppingCart, User, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { User, Menu, X } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <header className="w-full bg-white border-b border-gray-100">
@@ -54,15 +66,23 @@ export default function Navbar() {
           >
             Shop
           </Link>
-          <Link href="/shop" className="text-dark hover:text-primary transition-colors">
-            <User size={22} />
-          </Link>
-          <Link href="/shop" className="relative text-dark hover:text-primary transition-colors">
-            <ShoppingCart size={22} />
-            <span className="absolute -top-2 -right-2 bg-primary text-dark text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-              0
-            </span>
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-dark font-semibold px-5 py-2 rounded-full transition-colors text-sm"
+            >
+              <User size={16} />
+              Dashboard
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-2 border-2 border-dark text-dark font-semibold px-5 py-2 rounded-full hover:bg-dark hover:text-white transition-colors text-sm"
+            >
+              <User size={16} />
+              Sign In
+            </Link>
+          )}
         </nav>
 
         {/* Mobile hamburger */}
@@ -82,6 +102,11 @@ export default function Navbar() {
           <Link href="/about" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>About</Link>
           <Link href="/contact" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           <Link href="/shop" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
+          {isLoggedIn ? (
+            <Link href="/dashboard" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
+          ) : (
+            <Link href="/login" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
+          )}
         </nav>
       )}
     </header>

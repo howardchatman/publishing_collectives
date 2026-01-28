@@ -74,14 +74,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Connect with Ecko
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link href="/august-updates" className="hover:text-primary transition-colors">
                   See August&apos;s Updates
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-primary transition-colors">

@@ -1,0 +1,92 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+import {
+  LayoutDashboard,
+  Users,
+  MessageSquare,
+  MessageCircle,
+  Share2,
+  Settings,
+  LogOut,
+  ArrowLeft,
+} from "lucide-react";
+
+const navItems = [
+  { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+  { href: "/dashboard/leads", label: "Leads", icon: Users },
+  { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
+  { href: "/dashboard/chats", label: "Chat Logs", icon: MessageCircle },
+  { href: "/dashboard/social", label: "Social Media", icon: Share2 },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+];
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/");
+  };
+
+  return (
+    <div className="min-h-screen flex bg-gray-50">
+      {/* Sidebar */}
+      <aside className="w-64 bg-dark text-white flex flex-col fixed h-full">
+        <div className="px-6 py-6 border-b border-white/10">
+          <h2 className="text-lg font-bold">Publishing Collectives</h2>
+          <p className="text-sm text-white/50 mt-0.5">Admin Dashboard</p>
+        </div>
+
+        <nav className="flex-1 px-4 py-4 space-y-1">
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/dashboard" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-primary text-dark"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <item.icon size={18} />
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="px-4 py-4 border-t border-white/10 space-y-1">
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <ArrowLeft size={18} />
+            Back to Site
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors w-full text-left"
+          >
+            <LogOut size={18} />
+            Log Out
+          </button>
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <main className="flex-1 ml-64 p-8">{children}</main>
+    </div>
+  );
+}

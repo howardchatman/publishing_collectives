@@ -41,12 +41,14 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/shop"
+              <a
+                href="https://www.amazon.com/August-Boy-Who-Spoke-Sun/dp/B0FZRJ3JP9/ref=sr_1_1?crid=1MYA1YI331BNR&dib=eyJ2IjoiMSJ9.ysZhkZQ5sZHG4EavUxNrOMiz0bFn4YYnBcicMt-9IRDGjHj071QN20LucGBJIEps.QUBbgHj1m5x3yHe5O-H555nBQVv8itFw6CqS7ZqVNdk&dib_tag=se&keywords=august+the+boy+who+spoke+to+the+sun&nsdOptOutParam=true&qid=1769632402&sprefix=august+the+b%2Caps%2C161&sr=8-1"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-primary hover:bg-primary-dark text-dark font-semibold px-8 py-3 rounded-full transition-colors"
               >
                 Shop now
-              </Link>
+              </a>
               <Link
                 href="/contact"
                 className="inline-block bg-primary hover:bg-primary-dark text-dark font-semibold px-8 py-3 rounded-full transition-colors"
@@ -124,12 +126,14 @@ export default function Home() {
               </ul>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/shop"
+                <a
+                  href="https://www.amazon.com/August-Boy-Who-Spoke-Sun/dp/B0FZRJ3JP9/ref=sr_1_1?crid=1MYA1YI331BNR&dib=eyJ2IjoiMSJ9.ysZhkZQ5sZHG4EavUxNrOMiz0bFn4YYnBcicMt-9IRDGjHj071QN20LucGBJIEps.QUBbgHj1m5x3yHe5O-H555nBQVv8itFw6CqS7ZqVNdk&dib_tag=se&keywords=august+the+boy+who+spoke+to+the+sun&nsdOptOutParam=true&qid=1769632402&sprefix=august+the+b%2Caps%2C161&sr=8-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block bg-primary hover:bg-primary-dark text-dark font-semibold px-6 py-3 rounded-full transition-colors"
                 >
                   Purchase – August: The Boy Who Spoke to the Sun
-                </Link>
+                </a>
                 <Link
                   href="/shop"
                   className="inline-block border-2 border-dark text-dark font-semibold px-6 py-3 rounded-full hover:bg-dark hover:text-white transition-colors"
@@ -255,18 +259,18 @@ export default function Home() {
             >
               Follow Publishing Collectives
             </a>
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
             >
               Connect with Ecko
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/august-updates"
               className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
             >
               See August&apos;s Updates
-            </a>
+            </Link>
             <Link
               href="/contact"
               className="border-2 border-dark text-dark font-bold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors text-lg"
