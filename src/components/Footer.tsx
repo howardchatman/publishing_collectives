@@ -26,7 +26,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4">Follow Us</h3>
             <div className="flex gap-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/Publishing-Collectives/61583699193418/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -35,7 +35,7 @@ export default function Footer() {
                 <Facebook size={24} />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/publishingcollectives/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Instagram size={24} />
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/@publishingcollectives"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
@@ -53,7 +53,7 @@ export default function Footer() {
                 <TikTokIcon size={24} />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@PublishingCollectives"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
