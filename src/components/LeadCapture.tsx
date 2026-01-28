@@ -62,6 +62,12 @@ export default function LeadCapture() {
         phone: formData.phone || null,
       }]);
       if (error) throw error;
+      // Fire notification (non-blocking)
+      fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "lead", data: { first_name: formData.firstName, last_name: formData.lastName, email: formData.email } }),
+      }).catch(() => {});
       setStatus("sent");
       setTimeout(() => {
         handleClose();

@@ -34,6 +34,12 @@ export default function Contact() {
     try {
       const { error } = await supabase.from("contact_messages").insert([formData]);
       if (error) throw error;
+      // Fire notification (non-blocking)
+      fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "message", data: { name: formData.name, email: formData.email } }),
+      }).catch(() => {});
       setStatus("sent");
       setFormData({ name: "", email: "", message: "" });
     } catch {
