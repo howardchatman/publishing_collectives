@@ -9,6 +9,55 @@ interface Message {
   sender: "user" | "bot";
 }
 
+// Render text with clickable links (handles markdown [text](url) and plain URLs)
+function RenderLinkedText({ text }: { text: string }) {
+  // Match markdown links [text](url) and plain URLs
+  const parts = text.split(/(\[.*?\]\(.*?\)|https?:\/\/[^\s)]+)/g);
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        // Markdown link: [text](url)
+        const mdMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+        if (mdMatch) {
+          return (
+            <a
+              key={i}
+              href={mdMatch[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold hover:opacity-70"
+            >
+              {mdMatch[1]}
+            </a>
+          );
+        }
+        // Plain URL
+        if (/^https?:\/\//.test(part)) {
+          // Clean display: show just the path
+          let display = part;
+          try {
+            const url = new URL(part);
+            display = url.hostname.replace("www.", "") + (url.pathname !== "/" ? url.pathname : "");
+          } catch { /* use raw */ }
+          return (
+            <a
+              key={i}
+              href={part}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold hover:opacity-70"
+            >
+              {display}
+            </a>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -20,7 +69,6 @@ export default function ChatWidget() {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [showQuickReplies, setShowQuickReplies] = useState(true);
 
   const quickReplies = [
     { label: "Buy a Book", text: "I would like to purchase a book" },
@@ -48,8 +96,6 @@ export default function ChatWidget() {
   const handleSend = async (directMessage?: string) => {
     const messageText = directMessage ?? input;
     if (!messageText.trim() || isTyping) return;
-
-    setShowQuickReplies(false);
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -101,6 +147,10 @@ export default function ChatWidget() {
     }
   };
 
+  // Show quick replies when not typing and last message is from bot
+  const lastMessage = messages[messages.length - 1];
+  const showQuickReplies = !isTyping && lastMessage?.sender === "bot";
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {/* Chat Window */}
@@ -144,11 +194,15 @@ export default function ChatWidget() {
                       : "bg-white text-dark border border-gray-200 rounded-bl-md"
                   }`}
                 >
-                  {msg.text}
+                  {msg.sender === "bot" ? (
+                    <RenderLinkedText text={msg.text} />
+                  ) : (
+                    msg.text
+                  )}
                 </div>
               </div>
             ))}
-            {showQuickReplies && !isTyping && (
+            {showQuickReplies && (
               <div className="flex flex-wrap gap-2">
                 {quickReplies.map((qr) => (
                   <button
