@@ -16,7 +16,7 @@ export default function LeadCapture() {
 
   useEffect(() => {
     // Check if already dismissed this session
-    const dismissed = sessionStorage.getItem("leadCaptureDismissed");
+    const dismissed = localStorage.getItem("leadCaptureDismissed");
     if (dismissed) return;
 
     // Trigger 1: After 10 seconds
@@ -47,7 +47,7 @@ export default function LeadCapture() {
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem("leadCaptureDismissed", "true");
+    localStorage.setItem("leadCaptureDismissed", "true");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
