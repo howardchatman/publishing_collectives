@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function LeadCapture() {
@@ -82,12 +83,21 @@ export default function LeadCapture() {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={handleClose} />
 
       {/* Modal */}
       <div className="relative w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden animate-[fadeIn_0.3s_ease-out]">
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-3 right-3 z-10 text-dark/60 hover:text-dark transition-colors"
+          aria-label="Close"
+        >
+          <X size={22} />
+        </button>
+
         {/* Header */}
-        <div className="bg-primary px-6 py-5">
+        <div className="bg-primary px-6 py-5 pr-10">
           <h2 className="text-2xl font-black text-dark">
             Join The Collective
           </h2>
