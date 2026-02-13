@@ -546,6 +546,7 @@ export default function PhonemeBlenderGame() {
           points={state.pointsEarned}
           isLevelUp={state.isLevelUp}
           onContinue={() => dispatch({ type: "NEXT_ROUND" })}
+          skipSpeak
         />
       )}
 

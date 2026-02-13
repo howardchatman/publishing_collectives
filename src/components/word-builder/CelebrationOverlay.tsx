@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { speakWord } from "@/lib/speech";
 
 interface CelebrationOverlayProps {
@@ -8,6 +8,7 @@ interface CelebrationOverlayProps {
   points: number;
   isLevelUp: boolean;
   onContinue: () => void;
+  skipSpeak?: boolean;
 }
 
 export default function CelebrationOverlay({
@@ -15,13 +16,19 @@ export default function CelebrationOverlay({
   points,
   isLevelUp,
   onContinue,
+  skipSpeak = false,
 }: CelebrationOverlayProps) {
+  const spoken = useRef(false);
+
   // Speak the word and auto-advance after 3 seconds
   useEffect(() => {
-    speakWord(word);
+    if (!skipSpeak && !spoken.current) {
+      spoken.current = true;
+      speakWord(word);
+    }
     const timer = setTimeout(onContinue, 3000);
     return () => clearTimeout(timer);
-  }, [onContinue, word]);
+  }, [onContinue, word, skipSpeak]);
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-dark/40">
