@@ -1,6 +1,7 @@
 "use client";
 
 import { getPhonemeType } from "@/lib/phoneme-blender-data";
+import { speakPhoneme } from "@/lib/speech";
 
 interface PhonemeBubbleProps {
   phoneme: string;
@@ -52,7 +53,10 @@ export default function PhonemeBubble({
         e.dataTransfer.effectAllowed = "move";
         onDragStart(id);
       }}
-      onClick={() => onClick(id)}
+      onClick={() => {
+        speakPhoneme(phoneme);
+        onClick(id);
+      }}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

@@ -5,6 +5,7 @@ export interface PhonemeWordEntry {
   phonemes: string[];
   emoji: string;
   hint: string;
+  imageSrc?: string;
   distractors?: string[];
 }
 
@@ -44,14 +45,14 @@ export const PHONEME_LEVELS: PhonemeLevel[] = [
       ],
     },
     words: [
-      { word: "CAT", phonemes: ["C", "A", "T"], emoji: "\uD83D\uDC31", hint: "Says meow!" },
-      { word: "SUN", phonemes: ["S", "U", "N"], emoji: "\u2600\uFE0F", hint: "Shines in the sky!" },
-      { word: "DOG", phonemes: ["D", "O", "G"], emoji: "\uD83D\uDC36", hint: "Says woof!" },
-      { word: "HAT", phonemes: ["H", "A", "T"], emoji: "\uD83E\uDDE2", hint: "Goes on your head!" },
-      { word: "BUS", phonemes: ["B", "U", "S"], emoji: "\uD83D\uDE8C", hint: "A big yellow ride!" },
-      { word: "PIG", phonemes: ["P", "I", "G"], emoji: "\uD83D\uDC37", hint: "Oink oink!" },
-      { word: "RUG", phonemes: ["R", "U", "G"], emoji: "\uD83E\uDEA7", hint: "Soft on the floor!" },
-      { word: "PEN", phonemes: ["P", "E", "N"], emoji: "\uD83D\uDD8A\uFE0F", hint: "You write with it!" },
+      { word: "CAT", phonemes: ["C", "A", "T"], emoji: "\uD83D\uDC31", hint: "Says meow!", imageSrc: "/images/games/cat.png" },
+      { word: "SUN", phonemes: ["S", "U", "N"], emoji: "\u2600\uFE0F", hint: "Shines in the sky!", imageSrc: "/images/games/sun.png" },
+      { word: "DOG", phonemes: ["D", "O", "G"], emoji: "\uD83D\uDC36", hint: "Says woof!", imageSrc: "/images/games/dog.png" },
+      { word: "HAT", phonemes: ["H", "A", "T"], emoji: "\uD83E\uDDE2", hint: "Goes on your head!", imageSrc: "/images/games/hat.png" },
+      { word: "BUS", phonemes: ["B", "U", "S"], emoji: "\uD83D\uDE8C", hint: "A big yellow ride!", imageSrc: "/images/games/bus.png" },
+      { word: "PIG", phonemes: ["P", "I", "G"], emoji: "\uD83D\uDC37", hint: "Oink oink!", imageSrc: "/images/games/pig.png" },
+      { word: "RUG", phonemes: ["R", "U", "G"], emoji: "\uD83E\uDEA7", hint: "Soft on the floor!", imageSrc: "/images/games/rug.png" },
+      { word: "PEN", phonemes: ["P", "E", "N"], emoji: "\uD83D\uDD8A\uFE0F", hint: "You write with it!", imageSrc: "/images/games/pen.png" },
     ],
   },
   {
@@ -66,14 +67,14 @@ export const PHONEME_LEVELS: PhonemeLevel[] = [
       ],
     },
     words: [
-      { word: "STAR", phonemes: ["ST", "A", "R"], emoji: "\u2B50", hint: "Twinkles at night!" },
-      { word: "FLAG", phonemes: ["FL", "A", "G"], emoji: "\uD83C\uDFF3\uFE0F", hint: "Waves in the wind!" },
-      { word: "CRAB", phonemes: ["CR", "A", "B"], emoji: "\uD83E\uDD80", hint: "Has big claws!" },
-      { word: "FROG", phonemes: ["FR", "O", "G"], emoji: "\uD83D\uDC38", hint: "Says ribbit!" },
-      { word: "DRUM", phonemes: ["DR", "U", "M"], emoji: "\uD83E\uDD41", hint: "You bang on it!" },
-      { word: "SNAIL", phonemes: ["SN", "AI", "L"], emoji: "\uD83D\uDC0C", hint: "Carries its house!" },
-      { word: "BLOCK", phonemes: ["BL", "O", "CK"], emoji: "\uD83E\uDDF1", hint: "You build with it!" },
-      { word: "TRAIN", phonemes: ["TR", "AI", "N"], emoji: "\uD83D\uDE82", hint: "Rides on tracks!" },
+      { word: "STAR", phonemes: ["ST", "A", "R"], emoji: "\u2B50", hint: "Twinkles at night!", imageSrc: "/images/games/star.png" },
+      { word: "FLAG", phonemes: ["FL", "A", "G"], emoji: "\uD83C\uDFF3\uFE0F", hint: "Waves in the wind!", imageSrc: "/images/games/flag.png" },
+      { word: "CRAB", phonemes: ["CR", "A", "B"], emoji: "\uD83E\uDD80", hint: "Has big claws!", imageSrc: "/images/games/crab.png" },
+      { word: "FROG", phonemes: ["FR", "O", "G"], emoji: "\uD83D\uDC38", hint: "Says ribbit!", imageSrc: "/images/games/frog.png" },
+      { word: "DRUM", phonemes: ["DR", "U", "M"], emoji: "\uD83E\uDD41", hint: "You bang on it!", imageSrc: "/images/games/drum.png" },
+      { word: "SNAIL", phonemes: ["SN", "AI", "L"], emoji: "\uD83D\uDC0C", hint: "Carries its house!", imageSrc: "/images/games/snail.png" },
+      { word: "BLOCK", phonemes: ["BL", "O", "CK"], emoji: "\uD83E\uDDF1", hint: "You build with it!", imageSrc: "/images/games/block.png" },
+      { word: "TRAIN", phonemes: ["TR", "AI", "N"], emoji: "\uD83D\uDE82", hint: "Rides on tracks!", imageSrc: "/images/games/train.png" },
     ],
   },
   {
@@ -88,14 +89,14 @@ export const PHONEME_LEVELS: PhonemeLevel[] = [
       ],
     },
     words: [
-      { word: "SHIP", phonemes: ["SH", "I", "P"], emoji: "\uD83D\uDEA2", hint: "Sails the seas!" },
-      { word: "CHIN", phonemes: ["CH", "I", "N"], emoji: "\uD83D\uDE4D", hint: "Below your mouth!" },
-      { word: "THIN", phonemes: ["TH", "I", "N"], emoji: "\uD83E\uDEA1", hint: "Not thick!" },
-      { word: "WHALE", phonemes: ["WH", "A", "LE"], emoji: "\uD83D\uDC33", hint: "Biggest in the ocean!" },
-      { word: "FISH", phonemes: ["F", "I", "SH"], emoji: "\uD83D\uDC1F", hint: "Swims in water!" },
-      { word: "SHARK", phonemes: ["SH", "AR", "K"], emoji: "\uD83E\uDD88", hint: "King of the sea!" },
-      { word: "CHEST", phonemes: ["CH", "E", "ST"], emoji: "\uD83E\uDE77", hint: "Holds treasure!" },
-      { word: "PATH", phonemes: ["P", "A", "TH"], emoji: "\uD83D\uDEB6", hint: "You walk on it!" },
+      { word: "SHIP", phonemes: ["SH", "I", "P"], emoji: "\uD83D\uDEA2", hint: "Sails the seas!", imageSrc: "/images/games/ship.png" },
+      { word: "CHIN", phonemes: ["CH", "I", "N"], emoji: "\uD83D\uDE4D", hint: "Below your mouth!", imageSrc: "/images/games/chin.png" },
+      { word: "THIN", phonemes: ["TH", "I", "N"], emoji: "\uD83E\uDEA1", hint: "Not thick!", imageSrc: "/images/games/thin.png" },
+      { word: "WHALE", phonemes: ["WH", "A", "LE"], emoji: "\uD83D\uDC33", hint: "Biggest in the ocean!", imageSrc: "/images/games/whale.png" },
+      { word: "FISH", phonemes: ["F", "I", "SH"], emoji: "\uD83D\uDC1F", hint: "Swims in water!", imageSrc: "/images/games/fish.png" },
+      { word: "SHARK", phonemes: ["SH", "AR", "K"], emoji: "\uD83E\uDD88", hint: "King of the sea!", imageSrc: "/images/games/shark.png" },
+      { word: "CHEST", phonemes: ["CH", "E", "ST"], emoji: "\uD83E\uDE77", hint: "Holds treasure!", imageSrc: "/images/games/chest.png" },
+      { word: "PATH", phonemes: ["P", "A", "TH"], emoji: "\uD83D\uDEB6", hint: "You walk on it!", imageSrc: "/images/games/path.png" },
     ],
   },
   {
@@ -110,14 +111,14 @@ export const PHONEME_LEVELS: PhonemeLevel[] = [
       ],
     },
     words: [
-      { word: "RAIN", phonemes: ["R", "AI", "N"], emoji: "\uD83C\uDF27\uFE0F", hint: "Falls from clouds!" },
-      { word: "BOAT", phonemes: ["B", "OA", "T"], emoji: "\u26F5", hint: "Floats on water!" },
-      { word: "SEED", phonemes: ["S", "EE", "D"], emoji: "\uD83C\uDF31", hint: "Grows into a plant!" },
-      { word: "MOON", phonemes: ["M", "OO", "N"], emoji: "\uD83C\uDF19", hint: "Glows at night!" },
-      { word: "TEAM", phonemes: ["T", "EA", "M"], emoji: "\uD83E\uDD1D", hint: "Work together!" },
-      { word: "GOAT", phonemes: ["G", "OA", "T"], emoji: "\uD83D\uDC10", hint: "Says baaah!" },
-      { word: "FEET", phonemes: ["F", "EE", "T"], emoji: "\uD83E\uDDB6", hint: "You walk on them!" },
-      { word: "TOOTH", phonemes: ["T", "OO", "TH"], emoji: "\uD83E\uDEB7", hint: "In your mouth!" },
+      { word: "RAIN", phonemes: ["R", "AI", "N"], emoji: "\uD83C\uDF27\uFE0F", hint: "Falls from clouds!", imageSrc: "/images/games/rain.png" },
+      { word: "BOAT", phonemes: ["B", "OA", "T"], emoji: "\u26F5", hint: "Floats on water!", imageSrc: "/images/games/boat.png" },
+      { word: "SEED", phonemes: ["S", "EE", "D"], emoji: "\uD83C\uDF31", hint: "Grows into a plant!", imageSrc: "/images/games/seed.png" },
+      { word: "MOON", phonemes: ["M", "OO", "N"], emoji: "\uD83C\uDF19", hint: "Glows at night!", imageSrc: "/images/games/moon.png" },
+      { word: "TEAM", phonemes: ["T", "EA", "M"], emoji: "\uD83E\uDD1D", hint: "Work together!", imageSrc: "/images/games/team.png" },
+      { word: "GOAT", phonemes: ["G", "OA", "T"], emoji: "\uD83D\uDC10", hint: "Says baaah!", imageSrc: "/images/games/goat.png" },
+      { word: "FEET", phonemes: ["F", "EE", "T"], emoji: "\uD83E\uDDB6", hint: "You walk on them!", imageSrc: "/images/games/feet.png" },
+      { word: "TOOTH", phonemes: ["T", "OO", "TH"], emoji: "\uD83E\uDEB7", hint: "In your mouth!", imageSrc: "/images/games/tooth.png" },
     ],
   },
 ];

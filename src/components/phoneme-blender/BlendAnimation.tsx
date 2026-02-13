@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getPhonemeType } from "@/lib/phoneme-blender-data";
+import { speakBlend } from "@/lib/speech";
 
 interface BlendAnimationProps {
   phonemes: string[];
@@ -13,6 +14,7 @@ export default function BlendAnimation({ phonemes, word, onComplete }: BlendAnim
   const [phase, setPhase] = useState<"slide" | "fuse" | "done">("slide");
 
   useEffect(() => {
+    speakBlend(phonemes, word);
     const t1 = setTimeout(() => setPhase("fuse"), 600);
     const t2 = setTimeout(() => setPhase("done"), 1000);
     const t3 = setTimeout(onComplete, 1800);
@@ -21,7 +23,7 @@ export default function BlendAnimation({ phonemes, word, onComplete }: BlendAnim
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [onComplete]);
+  }, [onComplete, phonemes, word]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-dark/30">

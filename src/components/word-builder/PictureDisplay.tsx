@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
+
 interface PictureDisplayProps {
   emoji: string;
   hint: string;
@@ -7,17 +10,27 @@ interface PictureDisplayProps {
 }
 
 export default function PictureDisplay({ emoji, hint, imageSrc }: PictureDisplayProps) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = imageSrc && !imgError;
+
   return (
     <div className="flex flex-col items-center gap-3">
       <div
-        className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl shadow-md flex items-center justify-center"
+        className="w-36 h-36 md:w-44 md:h-44 bg-white rounded-3xl shadow-lg border-4 border-primary/30 flex items-center justify-center overflow-hidden"
         role="img"
         aria-label={hint}
       >
-        {imageSrc ? (
-          <img src={imageSrc} alt={hint} className="w-full h-full object-contain p-2 rounded-2xl" />
+        {showImage ? (
+          <Image
+            src={imageSrc}
+            alt={hint}
+            width={176}
+            height={176}
+            className="w-full h-full object-contain p-2"
+            onError={() => setImgError(true)}
+          />
         ) : (
-          <span className="text-7xl md:text-8xl select-none">{emoji}</span>
+          <span className="text-7xl md:text-8xl select-none drop-shadow-sm">{emoji}</span>
         )}
       </div>
       <p className="text-base md:text-lg font-semibold text-dark/70 text-center max-w-xs">
