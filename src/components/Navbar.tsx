@@ -67,6 +67,12 @@ export default function Navbar() {
             Shop
           </Link>
           <Link
+            href="/games"
+            className="text-dark font-medium hover:text-primary transition-colors"
+          >
+            Games
+          </Link>
+          <Link
             href={isLoggedIn ? "/dashboard" : "/login"}
             className="flex items-center gap-2 border-2 border-dark text-dark font-semibold px-5 py-2 rounded-full hover:bg-dark hover:text-white transition-colors text-sm"
           >
@@ -92,6 +98,7 @@ export default function Navbar() {
           <Link href="/about" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>About</Link>
           <Link href="/contact" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
           <Link href="/shop" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
+          <Link href="/games" className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Games</Link>
           <Link href={isLoggedIn ? "/dashboard" : "/login"} className="text-dark font-medium" onClick={() => setMobileMenuOpen(false)}>Sign In</Link>
         </nav>
       )}
